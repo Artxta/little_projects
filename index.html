@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posición Cartones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        input[type="number"], input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ffb700;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Posición Cartones</h1>
+        <label for="panelSize">Medida del panel (mm):</label><br>
+        <input type="number" id="panelSize" placeholder="Ingrese el tamaño del panel"><br>
+
+        <label for="separation">Separación entre cartones (mm):</label><br>
+        <input type="number" id="separation" placeholder="Ingrese la separación"><br>
+
+        <button onclick="calculate()">Calcular</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const panelSize = parseInt(document.getElementById('panelSize').value);
+            const separation = parseInt(document.getElementById('separation').value);
+            const cartonSize = 2400;
+            let output = document.getElementById('output');
+            output.innerHTML = ''; // Limpiar resultados anteriores
+
+            if (panelSize > 5000 && panelSize <= 10000) {
+                const carton1Position = (panelSize / 2) - (separation / 2);
+                const carton2Position = (panelSize / 2) + (separation / 2);
+                output.innerHTML = `El primer cartón a <strong>${carton1Position} mm</strong><br>`;
+                output.innerHTML += `El segundo cartón a <strong>${carton2Position} mm</strong>`;
+            } else if (panelSize > 11900 && panelSize < 16000) {
+                const carton1Position = (panelSize / 2) - (separation / 2);
+                const carton2Position = (panelSize / 2) + (separation / 2);
+                output.innerHTML = `Los <strong>DOS</strong> primeros cartones a <strong>${carton1Position} mm</strong><br>`;
+                output.innerHTML += `Los <strong>DOS</strong> segundos cartones a <strong>${carton2Position} mm</strong>`;
+            } else if (panelSize > 16000) {
+                output.innerHTML = "Te has pasado";
+            } else if (panelSize <= 5000) {
+                const carton1Position = (panelSize / 2) + (cartonSize / 2);
+                output.innerHTML = `Un cartón en la posición: <strong>${carton1Position} mm</strong>`;
+            } else {
+                output.innerHTML = "Por favor, introduce valores válidos.";
+            }
+        }
+    </script>
+</body>
+</html>
+
