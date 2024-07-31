@@ -85,7 +85,7 @@
             const carton2Position = (panelSize / 2) + (separation / 2);
             output.innerHTML = `El primer cartón a <strong>${carton1Position} mm</strong><br>`;
             output.innerHTML += `El segundo cartón a <strong>${carton2Position} mm</strong>`;
-        } else if (panelSize > 11900 && panelSize < 16000) {
+        } else if (panelSize > 11900 && panelSize <= 16000) {
             const carton1Position = (panelSize / 2) - (separation / 2);
             const carton2Position = (panelSize / 2) + (separation / 2);
             output.innerHTML = `Los <strong>DOS</strong> primeros cartones a <strong>${carton1Position} mm</strong><br>`;
